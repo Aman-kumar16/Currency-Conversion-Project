@@ -1,0 +1,10 @@
+package com.currency.currencyconversionservice.service;
+
+import org.springframework.http.ResponseEntity;
+
+import com.currency.currencyconversionservice.entity.CurrencyConverted;
+
+public interface CurrencyService {
+
+	public ResponseEntity<CurrencyConverted> getConversionRate(String from, String to, String quantity);
+}

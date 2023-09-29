@@ -1,5 +1,6 @@
 package com.currency.currencyconversionservice.service;
 
+import java.text.DecimalFormat;
 import java.time.Instant;
 
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,8 @@ import com.currency.currencyconversionservice.entity.CurrencyRate;
 
 @Service
 public class CurrencyServiceClass implements CurrencyService {
+	
+	private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
 	@Override
 	public CurrencyConverted getConversionRate(String from, String to, Integer quantity) {
@@ -49,7 +52,11 @@ public class CurrencyServiceClass implements CurrencyService {
 		long unixTimestamp = currencyRate.getBody().getTimestamp();
 		Instant instant = Instant.ofEpochSecond(unixTimestamp);		
 		
-		CurrencyConverted converted = new CurrencyConverted(from, to, rate*quantity, rate,
+		
+		double convertedValue = Double.parseDouble(decimalFormat.format(rate*quantity));
+		rate = Double.parseDouble(decimalFormat.format(rate));
+		
+		CurrencyConverted converted = new CurrencyConverted(from, to, convertedValue, rate,
 											currencyRate.getBody().getDate() , instant.toString());
 		
 		return converted;

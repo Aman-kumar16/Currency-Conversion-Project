@@ -1,0 +1,45 @@
+package com.currency.currencyconversionservice.service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.currency.currencyconversionservice.entity.CurrencyConverted;
+import com.currency.currencyconversionservice.entity.CurrencyRate;
+
+
+@Service
+public class CurrencyServiceClass implements CurrencyService {
+
+	@Override
+	public CurrencyConverted getConversionRate(String from, String to, Integer quantity) {
+		
+
+		// url for currency rate of 1 EUR to other currencies
+		String url="http://data.fixer.io/api/latest?access_key=7fbb297eabc883c452ed9f45a5825d4b";
+		ResponseEntity<CurrencyRate> currencyRate = new RestTemplate().getForEntity(url, CurrencyRate.class);	
+		
+		// got our response from the api wrt EUR
+		
+		// do our processing of {from} to {to} currency conversion and with specified quantity.
+		// then return the final result object of CurrencyConverted class.
+		
+		double rate=0.0;
+		
+		if(from.equals("EUR")) {
+			rate = currencyRate.getBody().getRates().get(to);
+		}else {
+			// convert rate according to the EUR & from
+			double fromRate = currencyRate.getBody().getRates().get(from);
+			double toRate = currencyRate.getBody().getRates().get(to);
+			rate = toRate/fromRate;
+		}
+		
+		
+		
+		CurrencyConverted converted = new CurrencyConverted(from, to, rate*quantity, rate);
+		
+		return converted;
+	}
+
+}

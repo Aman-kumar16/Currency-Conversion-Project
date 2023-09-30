@@ -1,0 +1,33 @@
+package com.currency.currencyconversionservice.entity;
+
+public class Rates {
+
+	double rateTo=0.0d;
+	
+	
+	public Rates() {
+		
+	}
+
+
+	public Rates(double rateTo) {
+		super();
+		this.rateTo = rateTo;
+	}
+
+
+	public double getRateTo() {
+		return rateTo;
+	}
+
+
+	public void setRateTo(double rateTo) {
+		this.rateTo = rateTo;
+	}
+
+	@Override
+	public String toString() {
+		return "Rates [rateTo=" + rateTo + "]";
+	}
+	
+}

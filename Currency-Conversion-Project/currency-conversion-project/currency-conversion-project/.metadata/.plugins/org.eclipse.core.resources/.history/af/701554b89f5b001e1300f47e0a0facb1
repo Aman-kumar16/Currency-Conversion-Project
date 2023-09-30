@@ -1,0 +1,13 @@
+package com.currency.currencyconversionservice.service;
+
+import com.currency.currencyconversionservice.entity.CurrencyConverted;
+
+public class CurrencyServiceClass implements CurrencyService {
+
+	@Override
+	public CurrencyConverted getConversionRate(String from, String to) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

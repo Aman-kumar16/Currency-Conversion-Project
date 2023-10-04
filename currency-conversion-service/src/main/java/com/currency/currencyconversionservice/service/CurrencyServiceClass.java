@@ -3,24 +3,30 @@ package com.currency.currencyconversionservice.service;
 import java.text.DecimalFormat;
 import java.time.Instant;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.currency.currencyconversionservice.config.Configuration;
 import com.currency.currencyconversionservice.entity.CurrencyConverted;
 import com.currency.currencyconversionservice.entity.CurrencyRate;
 
 
 @Service
 public class CurrencyServiceClass implements CurrencyService {
+	@Autowired
+	private Configuration configuration;
 	
 	private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
 	@Override
 	public CurrencyConverted getConversionRate(String from, String to, Integer quantity) {
 		
-		String accessKey="7fbb297eabc883c452ed9f45a5825d4b";
-
+		//we are getting this access key from centralized git configuration
+		String accessKey=configuration.getKeyValue();
+		
+		
 		// url for currency rate of 1 EUR to other currencies
 		String url="http://data.fixer.io/api/latest?access_key=" + accessKey;
 		ResponseEntity<CurrencyRate> currencyRate = new RestTemplate().getForEntity(url, CurrencyRate.class);	

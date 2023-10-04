@@ -27,6 +27,7 @@ public class CurrencyServiceClass implements CurrencyService {
 		String accessKey=configuration.getKeyValue();
 		
 		
+		
 		// url for currency rate of 1 EUR to other currencies
 		String url="http://data.fixer.io/api/latest?access_key=" + accessKey;
 		ResponseEntity<CurrencyRate> currencyRate = new RestTemplate().getForEntity(url, CurrencyRate.class);	

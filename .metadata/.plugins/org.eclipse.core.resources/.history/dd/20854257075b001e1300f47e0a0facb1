@@ -1,6 +1,0 @@
-package com.currency.currencyconversionservice.entity;
-
-public class Rates {
-
-	double rateTo=0.0d;
-}

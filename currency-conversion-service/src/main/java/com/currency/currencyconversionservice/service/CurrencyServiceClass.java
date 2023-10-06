@@ -63,7 +63,7 @@ public class CurrencyServiceClass implements CurrencyService {
 		double convertedValue = Double.parseDouble(decimalFormat.format(rate*quantity));
 		rate = Double.parseDouble(decimalFormat.format(rate));
 		
-		CurrencyConverted converted = new CurrencyConverted(from, to, convertedValue, rate,
+		CurrencyConverted converted = new CurrencyConverted(from, to, quantity, convertedValue, rate,
 											currencyRate.getBody().getDate() , instant.toString());
 		
 		return converted;

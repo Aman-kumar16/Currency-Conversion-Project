@@ -8,6 +8,8 @@ public class CurrencyConverted {
 	
 	String convertTo;
 	
+	Integer quantity;
+	
 	double convertedValue;
 	
 	double rate;
@@ -16,36 +18,21 @@ public class CurrencyConverted {
 	
 	String timestamp;
 	
-	
-
-	public CurrencyConverted(String base, String convertTo, double convertedValue, double rate, String date,
-			String timestamp) {
-		super();
-		this.base = base;
-		this.convertTo = convertTo;
-		this.convertedValue = convertedValue;
-		this.rate = rate;
-		this.date = date;
-		this.timestamp = timestamp;
-	}
 
 	public CurrencyConverted() {
 		
 	}
 
-	public CurrencyConverted(String base, String convertTo, double convertedValue) {
+	public CurrencyConverted(String base, String convertTo, Integer quantity, double convertedValue, double rate,
+			String date, String timestamp) {
 		super();
 		this.base = base;
 		this.convertTo = convertTo;
-		this.convertedValue = convertedValue;
-	}
-
-	public CurrencyConverted(String base, String convertTo, double convertedValue, double rate) {
-		super();
-		this.base = base;
-		this.convertTo = convertTo;
+		this.quantity = quantity;
 		this.convertedValue = convertedValue;
 		this.rate = rate;
+		this.date = date;
+		this.timestamp = timestamp;
 	}
 
 	public String getBase() {
@@ -64,9 +51,20 @@ public class CurrencyConverted {
 		this.convertTo = convertTo;
 	}
 
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 	public double getConvertedValue() {
 		return convertedValue;
 	}
+
+	
 
 	public void setConvertedValue(double convertedValue) {
 		this.convertedValue = convertedValue;
@@ -98,12 +96,10 @@ public class CurrencyConverted {
 
 	@Override
 	public String toString() {
-		return "CurrencyConverted [base=" + base + ", convertTo=" + convertTo + ", convertedValue=" + convertedValue
-				+ ", rate=" + rate + ", date=" + date + ", timestamp=" + timestamp + "]";
+		return "CurrencyConverted [base=" + base + ", convertTo=" + convertTo + ", quantity=" + quantity
+				+ ", convertedValue=" + convertedValue + ", rate=" + rate + ", date=" + date + ", timestamp="
+				+ timestamp + "]";
 	}
 
-	 
-	
-	
 	
 }
